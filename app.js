@@ -40,8 +40,7 @@ function searchPeopleDataSet(people) {
             results = searchByName(people);
             break;
         case 'traits':
-            //! TODO
-            // results = searchByTraits(people);
+            results = searchByTraits(people);
             break;
         default:
             return searchPeopleDataSet(people);
@@ -58,10 +57,64 @@ function searchById(people) {
 }
 
 function searchByName(people) {
-    const firstNameToSearchFor = prompt('Please enter the the first name of the person you are searching for.');
+    const firstNameToSearchFor = prompt('Please enter the trait you would like to search by.');
     const lastNameToSearchFor = prompt('Please enter the the last name of the person you are searching for.');
     const fullNameSearchResults = people.filter(person => (person.firstName.toLowerCase() === firstNameToSearchFor.toLowerCase() && person.lastName.toLowerCase() === lastNameToSearchFor.toLowerCase()));
     return fullNameSearchResults;
+}
+
+function searchByTraits(people) {
+    const traitsToSearchFor = prompt('Please enter the the trait you are searching for.');
+    let traitsResults = [];
+    switch (traitsToSearchFor) {
+        case 'gender':
+            let traitsResults = [SearchByGender(people)];
+            console.log(traitsResults);
+            break;
+        case 'dob':
+            null;
+            break;    
+        case 'height':
+            null;
+            break;    
+        case 'weight':
+            null;
+            break;    
+        case 'eyeColor':
+            null;
+            break;    
+        case 'occupation':
+            null;
+            break;    
+        case 'parents':
+            null;
+            break;    
+        case 'currentSpouse':
+            null;
+            break;    
+        default:
+            alert("Invalid input!");
+            return searchByTraits(people);  
+    }
+    return traitsResults;
+}
+
+function SearchByGender(people) {
+    let genderToSearch = prompt('Press 1 to search for Males. Press 2 to search for Females.');
+    let results = [];    
+    if (genderToSearch === '1') {
+        const genderToSearchFor = "male";
+        results = people.filter(person => person.gender === genderToSearchFor)
+        }
+    else if (genderToSearch === '2') {
+        const genderToSearchFor = "female";
+        results = people.filter(person => person.gender === genderToSearchFor)
+        }
+        else {
+            alert('Invalid input. Please try agin.');
+            SearchByGender(people);
+        }
+    return results
 }
 
 function mainMenu(person, people) {
