@@ -57,18 +57,18 @@ function searchById(people) {
 }
 
 function searchByName(people) {
-    const firstNameToSearchFor = prompt('Please enter the trait you would like to search by.');
+    const firstNameToSearchFor = prompt('Please enter the the first name of the person you are searching for.');
     const lastNameToSearchFor = prompt('Please enter the the last name of the person you are searching for.');
     const fullNameSearchResults = people.filter(person => (person.firstName.toLowerCase() === firstNameToSearchFor.toLowerCase() && person.lastName.toLowerCase() === lastNameToSearchFor.toLowerCase()));
     return fullNameSearchResults;
 }
 
 function searchByTraits(people) {
-    const traitsToSearchFor = prompt('Please enter the the trait you are searching for.');
+    const traitsToSearchFor = validatedPrompt('Please enter the the trait you are searching for.' ['gender', 'dob', 'height', 'weight', 'eyeColor', 'occupation', 'parents', 'currentSpouse']);
     let traitsResults = [];
     switch (traitsToSearchFor) {
         case 'gender':
-            let traitsResults = [SearchByGender(people)];
+            traitsResults = [SearchByGender(people)];
             console.log(traitsResults);
             break;
         case 'dob':
@@ -81,10 +81,12 @@ function searchByTraits(people) {
             null;
             break;    
         case 'eyeColor':
-            null;
+            traitsResults = [SearchByEyeColor(people)];
+            console.log(traitsResults);
             break;    
         case 'occupation':
-            null;
+            traitsResults = [SearchByOccupation];
+            console.log(traitsResults);
             break;    
         case 'parents':
             null;
@@ -101,6 +103,84 @@ function searchByTraits(people) {
 
 function SearchByGender(people) {
     let genderToSearch = prompt('Press 1 to search for Males. Press 2 to search for Females.');
+    let results = [];    
+    if (genderToSearch === '1') {
+        const genderToSearchFor = "male";
+        results = people.filter(person => person.gender === genderToSearchFor)
+        }
+    else if (genderToSearch === '2') {
+        const genderToSearchFor = "female";
+        results = people.filter(person => person.gender === genderToSearchFor)
+        }
+        else {
+            alert('Invalid input. Please try agin.');
+            SearchByGender(people);
+        }
+    return results
+}
+
+function SearchByEyeColor(people) {
+    let eyeColorToSearch = prompt('Press 1 for Brown. Press 2 for Black. Press 3 for Hazel. Press 4 for Blue. Press 5 for Green.');
+    let results = [];    
+    if (eyeColorToSearch === '1') {
+        const eyeColorToSearchFor = "brown";
+        results = people.filter(person => person.eyeColor === eyeColorToSearchFor)
+        }
+    else if (eyeColorToSearch === '2') {
+        const eyeColorToSearchFor = "black";
+        results = people.filter(person => person.eyeColor === eyeColorToSearchFor)
+        }
+    else if (eyeColorToSearch === '3') {
+        const eyeColorToSearchFor = "hazel";
+        results = people.filter(person => person.eyeColor === eyeColorToSearchFor)
+        }
+    else if (eyeColorToSearch === '4') {
+        const eyeColorToSearchFor = "blue";
+        results = people.filter(person => person.eyeColor === eyeColorToSearchFor)
+        }
+    else if (eyeColorToSearch === '5') {
+        const eyeColorToSearchFor = "green";
+        results = people.filter(person => person.eyeColor === eyeColorToSearchFor)
+        }
+    else {
+            alert('Invalid input. Please try agin.');
+            SearchByEyeColor(people);
+        }
+    return results
+}
+function SearchByOccupation(people) {
+    let occupationToSearch = prompt('Press 1 for Brown. Press 2 for Black. Press 3 for Hazel. Press 4 for Blue. Press 5 for Green.');
+    let results = [];    
+    if (occupationToSearch === '1') {
+        const occupationToSearchFor = "brown";
+        results = people.filter(person => person.eyeColor === eyeColorToSearchFor)
+        }
+    else if (eyeColorToSearch === '2') {
+        const eyeColorToSearchFor = "black";
+        results = people.filter(person => person.eyeColor === eyeColorToSearchFor)
+        }
+    else if (eyeColorToSearch === '3') {
+        const eyeColorToSearchFor = "hazel";
+        results = people.filter(person => person.eyeColor === eyeColorToSearchFor)
+        }
+    else if (eyeColorToSearch === '4') {
+        const eyeColorToSearchFor = "blue";
+        results = people.filter(person => person.eyeColor === eyeColorToSearchFor)
+        }
+    else if (eyeColorToSearch === '5') {
+        const eyeColorToSearchFor = "green";
+        results = people.filter(person => person.eyeColor === eyeColorToSearchFor)
+        }
+    else {
+            alert('Invalid input. Please try agin.');
+            SearchByEyeColor(people);
+        }
+    return results
+}
+
+function searchByDOB(people) {
+    let dobToSearchString = prompt('Please enter date of birth: m/dd/year');
+    let dobToSearchInt = parseInt(dobToSearchString);
     let results = [];    
     if (genderToSearch === '1') {
         const genderToSearchFor = "male";
@@ -168,6 +248,7 @@ function validatedPrompt(message, acceptableAnswers) {
         return validatedPrompt(message, acceptableAnswers);
     }
 }
+
 
 function exitOrRestart(people) {
     const userExitOrRestartChoice = validatedPrompt(
