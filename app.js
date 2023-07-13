@@ -64,7 +64,10 @@ function searchByName(people) {
 }
 
 function searchByTraits(people) {
-    const traitsToSearchFor = validatedPrompt('Please enter the the trait you are searching for.' ['gender', 'dob', 'height', 'weight', 'eyeColor', 'occupation', 'parents', 'currentSpouse']);
+    const traitsToSearchFor = validatedPrompt(
+        'Please enter the the trait you are searching for.', 
+        ['gender', 'dob', 'height', 'weight', 'eyeColor', 'occupation', 'parents', 'currentSpouse']
+        );
     let traitsResults = [];
     switch (traitsToSearchFor) {
         case 'gender':
@@ -85,15 +88,9 @@ function searchByTraits(people) {
             console.log(traitsResults);
             break;    
         case 'occupation':
-            traitsResults = [SearchByOccupation];
+            traitsResults = [SearchByOccupation(people)];
             console.log(traitsResults);
-            break;    
-        case 'parents':
-            null;
-            break;    
-        case 'currentSpouse':
-            null;
-            break;    
+            break;      
         default:
             alert("Invalid input!");
             return searchByTraits(people);  
@@ -102,13 +99,16 @@ function searchByTraits(people) {
 }
 
 function SearchByGender(people) {
-    let genderToSearch = prompt('Press 1 to search for Males. Press 2 to search for Females.');
+    let genderToSearch = validatedPrompt(
+        'Please choose an option to filter by gender trait.',
+        ['male', 'female']
+        );
     let results = [];    
-    if (genderToSearch === '1') {
+    if (genderToSearch === 'male') {
         const genderToSearchFor = "male";
         results = people.filter(person => person.gender === genderToSearchFor)
         }
-    else if (genderToSearch === '2') {
+    else if (genderToSearch === 'female') {
         const genderToSearchFor = "female";
         results = people.filter(person => person.gender === genderToSearchFor)
         }
@@ -120,25 +120,28 @@ function SearchByGender(people) {
 }
 
 function SearchByEyeColor(people) {
-    let eyeColorToSearch = prompt('Press 1 for Brown. Press 2 for Black. Press 3 for Hazel. Press 4 for Blue. Press 5 for Green.');
+    let eyeColorToSearch = validatedPrompt(
+        'Please choose an option to filter by for eyeColor trait.',
+        ['brown', 'black', 'hazel', 'blue', 'green',]
+        );
     let results = [];    
-    if (eyeColorToSearch === '1') {
+    if (eyeColorToSearch === 'brown') {
         const eyeColorToSearchFor = "brown";
         results = people.filter(person => person.eyeColor === eyeColorToSearchFor)
         }
-    else if (eyeColorToSearch === '2') {
+    else if (eyeColorToSearch === 'black') {
         const eyeColorToSearchFor = "black";
         results = people.filter(person => person.eyeColor === eyeColorToSearchFor)
         }
-    else if (eyeColorToSearch === '3') {
+    else if (eyeColorToSearch === 'hazel') {
         const eyeColorToSearchFor = "hazel";
         results = people.filter(person => person.eyeColor === eyeColorToSearchFor)
         }
-    else if (eyeColorToSearch === '4') {
+    else if (eyeColorToSearch === 'blue') {
         const eyeColorToSearchFor = "blue";
         results = people.filter(person => person.eyeColor === eyeColorToSearchFor)
         }
-    else if (eyeColorToSearch === '5') {
+    else if (eyeColorToSearch === 'green') {
         const eyeColorToSearchFor = "green";
         results = people.filter(person => person.eyeColor === eyeColorToSearchFor)
         }
@@ -149,31 +152,46 @@ function SearchByEyeColor(people) {
     return results
 }
 function SearchByOccupation(people) {
-    let occupationToSearch = prompt('Press 1 for Brown. Press 2 for Black. Press 3 for Hazel. Press 4 for Blue. Press 5 for Green.');
+    let occupationToSearch = validatedPrompt(
+        'Please choose an option to filter by occupation.', 
+        ['programmer', 'assistant', 'landscaper', 'nurse', 'student', 'architect', 'doctor', 'politician',]
+        );
     let results = [];    
-    if (occupationToSearch === '1') {
-        const occupationToSearchFor = "brown";
-        results = people.filter(person => person.eyeColor === eyeColorToSearchFor)
+    if (occupationToSearch === 'programmer') {
+        const occupationToSearchFor = "programmer";
+        results = people.filter(person => person.occupation === occupationToSearchFor)
         }
-    else if (eyeColorToSearch === '2') {
-        const eyeColorToSearchFor = "black";
-        results = people.filter(person => person.eyeColor === eyeColorToSearchFor)
+    else if (occupationToSearch === 'assistant') {
+        const occupationToSearchFor = "assistant";
+        results = people.filter(person => person.occupation === occupationToSearchFor)
         }
-    else if (eyeColorToSearch === '3') {
-        const eyeColorToSearchFor = "hazel";
-        results = people.filter(person => person.eyeColor === eyeColorToSearchFor)
+    else if (occupationToSearch === 'landscaper') {
+        const occupationToSearchFor = "landscaper";
+        results = people.filter(person => person.occupation === occupationToSearchFor)
         }
-    else if (eyeColorToSearch === '4') {
-        const eyeColorToSearchFor = "blue";
-        results = people.filter(person => person.eyeColor === eyeColorToSearchFor)
+    else if (occupationToSearch === 'nurse') {
+        const occupationToSearchFor = "nurse";
+        results = people.filter(person => person.occupation === occupationToSearchFor)
         }
-    else if (eyeColorToSearch === '5') {
-        const eyeColorToSearchFor = "green";
-        results = people.filter(person => person.eyeColor === eyeColorToSearchFor)
+    else if (occupationToSearch === 'student') {
+        const occupationToSearchFor = "student";
+        results = people.filter(person => person.occupation === occupationToSearchFor)
+        }
+    else if (occupationToSearch === 'architect') {
+        const occupationToSearchFor = "architect";
+        results = people.filter(person => person.occupation === occupationToSearchFor)
+        }
+    else if (occupationToSearch === 'doctor') {
+        const occupationToSearchFor = "doctor";
+        results = people.filter(person => person.occupation === occupationToSearchFor)
+        }
+    else if (occupationToSearch === 'politician') {
+        const occupationToSearchFor = "politician";
+        results = people.filter(person => person.occupation === occupationToSearchFor)
         }
     else {
             alert('Invalid input. Please try agin.');
-            SearchByEyeColor(people);
+            SearchByOccupation(people);
         }
     return results
 }
