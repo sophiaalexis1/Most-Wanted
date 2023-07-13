@@ -118,7 +118,102 @@ function SearchByGender(people) {
         }
     return results
 }
-
+function searchByDOB(people) {
+    let dobToSearchString = validatedPrompt(
+        'Please choose an option to filter by date of birth', 
+        ['month', 'year']
+        );
+    if (dobToSearchString = "month") {
+        validatedPrompt(
+            'Please choose an option to filter by month',
+            ['january', 'february', 'march', 'april', 'may', 'july', 'august','september', 'october', 'november', 'december',]
+        )
+        let results = [];
+        switch(results) {
+            case 'january':
+                results =[
+                people.filter(person => person.dob === '1/18/1949');
+                ]
+                break;
+            case 'february':
+                results =[
+                people.filter(person => person.dob === '2/8/1972'),
+                people.filter(person => person.dob === '2/19/1966'),
+                people.filter(person => person.dob === '2/19/1970'),
+                people.filter(person => person.dob === '2/02/1987'),
+                ]
+                break;
+            case 'march':
+                results =[
+                people.filter(person => person.dob === '3/16/1938'),
+                people.filter(person => person.dob === '3/13/1963'),
+                ]
+                break;
+            case 'april':
+                results =[
+                people.filter(person => person.dob === '4/1/1947'),
+                people.filter(person => person.dob === '4/10/1940'),
+                people.filter(person => person.dob === '4/20/1939'),
+                ]
+                break;
+            case 'may':
+                results =[
+                people.filter(person => person.dob === '1/18/1949');
+                ]
+                break;
+            case 'january':
+                results =[
+                people.filter(person => person.dob === '1/18/1949');
+                ]
+                break;
+            case 'january':
+                results =[
+                people.filter(person => person.dob === '1/18/1949');
+                ]
+                break;
+            case 'january':
+                results =[
+                people.filter(person => person.dob === '1/18/1949');
+                ]
+                break;
+            case 'january':
+                results =[
+                people.filter(person => person.dob === '1/18/1949');
+                ]
+                break;
+            case 'january':
+                results =[
+                people.filter(person => person.dob === '1/18/1949');
+                ]
+                break;
+            case 'january':
+                results =[
+                people.filter(person => person.dob === '1/18/1949');
+                ]
+                break;
+            case 'january':
+                results =[
+                people.filter(person => person.dob === '1/18/1949');
+                ]
+                break;
+        }
+    };
+    let dobToSearchInt = parseInt(dobToSearchString);
+    let results = [];    
+    if (dobToSearchInt === '1') {
+        const dobToSearchFor = "male";
+        results = people.filter(person => person.dob === dobToSearchFor)
+        }
+    else if (dobToSearchInt === '2') {
+        const dobToSearchFor = "female";
+        results = people.filter(person => person.dob === dobToSearchFor)
+        }
+        else {
+            alert('Invalid input. Please try agin.');
+            searchByDOB(people);
+        }
+    return results
+}
 function SearchByEyeColor(people) {
     let eyeColorToSearch = validatedPrompt(
         'Please choose an option to filter by for eyeColor trait.',
@@ -196,24 +291,6 @@ function SearchByOccupation(people) {
     return results
 }
 
-function searchByDOB(people) {
-    let dobToSearchString = prompt('Please enter date of birth: m/dd/year');
-    let dobToSearchInt = parseInt(dobToSearchString);
-    let results = [];    
-    if (genderToSearch === '1') {
-        const genderToSearchFor = "male";
-        results = people.filter(person => person.gender === genderToSearchFor)
-        }
-    else if (genderToSearch === '2') {
-        const genderToSearchFor = "female";
-        results = people.filter(person => person.gender === genderToSearchFor)
-        }
-        else {
-            alert('Invalid input. Please try agin.');
-            SearchByGender(people);
-        }
-    return results
-}
 
 function mainMenu(person, people) {
 
