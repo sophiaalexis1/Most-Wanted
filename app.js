@@ -75,7 +75,8 @@ function searchByTraits(people) {
             console.log(traitsResults);
             break;
         case 'dob':
-            null;
+            traitsResults = [searchByDOB(people)];
+            console.log(traitsResults);
             break;    
         case 'height':
             null;
@@ -123,97 +124,189 @@ function searchByDOB(people) {
         'Please choose an option to filter by date of birth', 
         ['month', 'year']
         );
+    let results = [];
     if (dobToSearchString = "month") {
-        validatedPrompt(
+        const monthToSearchFor = validatedPrompt(
             'Please choose an option to filter by month',
             ['january', 'february', 'march', 'april', 'may', 'july', 'august','september', 'october', 'november', 'december',]
-        )
-        let results = [];
-        switch(results) {
+        );
+        switch(monthToSearchFor) {
             case 'january':
-                results =[
+                results =
                 people.filter(person => person.dob === '1/18/1949');
-                ]
                 break;
             case 'february':
-                results =[
-                people.filter(person => person.dob === '2/8/1972'),
-                people.filter(person => person.dob === '2/19/1966'),
-                people.filter(person => person.dob === '2/19/1970'),
-                people.filter(person => person.dob === '2/02/1987'),
-                ]
+                results = people.filter(person => (
+                person.dob === '2/8/1972' ||
+                person.dob === '2/19/1966' ||
+                person.dob === '2/19/1970' ||
+                person.dob === '2/02/1987'
+                ));
                 break;
             case 'march':
-                results =[
-                people.filter(person => person.dob === '3/16/1938'),
-                people.filter(person => person.dob === '3/13/1963'),
-                ]
+                results = people.filter(person => (
+                person.dob === '3/16/1938' ||
+                person.dob === '3/13/1963'
+                ));
                 break;
             case 'april':
-                results =[
-                people.filter(person => person.dob === '4/1/1947'),
-                people.filter(person => person.dob === '4/10/1940'),
-                people.filter(person => person.dob === '4/20/1939'),
-                ]
+                results = people.filter(person => (
+                person.dob === '4/1/1947' ||
+                person.dob === '4/10/1940' ||
+                person.dob === '4/20/1939'
+                ));
                 break;
             case 'may':
-                results =[
-                people.filter(person => person.dob === '1/18/1949');
-                ]
+                results = people.filter(person => (
+                person.dob === '5/9/1951' ||
+                person.dob === '5/6/1937'
+                ));
                 break;
-            case 'january':
-                results =[
-                people.filter(person => person.dob === '1/18/1949');
-                ]
+            case 'june':
+                results = "No results found"
                 break;
-            case 'january':
-                results =[
-                people.filter(person => person.dob === '1/18/1949');
-                ]
+            case 'july':
+                results = people.filter(person => person.dob === '7/26/1959');
                 break;
-            case 'january':
-                results =[
-                people.filter(person => person.dob === '1/18/1949');
-                ]
+            case 'august':
+                results = people.filter(person => person.dob === '8/5/1967');
                 break;
-            case 'january':
-                results =[
-                people.filter(person => person.dob === '1/18/1949');
-                ]
+            case 'september':
+                results = people.filter(person => person.dob === '9/6/1945');
                 break;
-            case 'january':
-                results =[
-                people.filter(person => person.dob === '1/18/1949');
-                ]
+            case 'october':
+                results =
+                people.filter(person => (
+                person.dob === '10/28/1948' ||
+                person.dob === '10/7/1953'
+                ));
                 break;
-            case 'january':
-                results =[
-                people.filter(person => person.dob === '1/18/1949');
-                ]
+            case 'november':
+                results = people.filter(person => person.dob === '11/4/1970');
                 break;
-            case 'january':
-                results =[
-                people.filter(person => person.dob === '1/18/1949');
-                ]
+            case 'december':
+                results = people.filter(person => (
+                person.dob === '12/18/1952' ||
+                person.dob === '12/23/1969' ||
+                person.dob === '12/18/1969' ||
+                person.dob === '12/11/1961'
+                ));
                 break;
+            default:
+                alert('Invalid input!')
+                return searchByDOB(people);
         }
-    };
-    let dobToSearchInt = parseInt(dobToSearchString);
-    let results = [];    
-    if (dobToSearchInt === '1') {
-        const dobToSearchFor = "male";
-        results = people.filter(person => person.dob === dobToSearchFor)
-        }
-    else if (dobToSearchInt === '2') {
-        const dobToSearchFor = "female";
-        results = people.filter(person => person.dob === dobToSearchFor)
-        }
-        else {
-            alert('Invalid input. Please try agin.');
-            searchByDOB(people);
-        }
-    return results
-}
+    } else if (dobToSearchString === 'year') {
+        const yearToSearchFor = validatedPrompt(
+            'Please choose an option to filter by year',
+            ['1937', '1938', '1939', '1940', '1945', '1947', '1948','1951', '1952', '1953', '1959', '1961', '1963', '1966', '1967', '1969', '1970', '1972', '1987']
+        );
+        switch(yearToSearchFor) {
+            case '1937':
+                results =
+                people.filter(person => person.dob === '5/6/1937');
+                break;
+            case '1938':
+                results = 
+                people.filter(person => person.dob === '3/16/1938');
+                break;
+            case '1939':
+                results = 
+                people.filter(person => person.dob === '4/20/1939');
+                break;
+            case '1940':
+                results = 
+                people.filter(person => person.dob === '4/10/1940');
+                break;
+            case '1945':
+                results = 
+                people.filter(person => person.dob === '9/6/1945');
+                break;
+            case '1947':
+                results = 
+                people.filter(person => person.dob === '4/1/1947');
+                break;
+            case '1948':
+                results = 
+                people.filter(person => person.dob === '10/28/1948');
+                break;
+            case '1949':
+                results = 
+                people.filter(person => person.dob === '1/18/1949');
+                break;
+            case '1951':
+                results = 
+                people.filter(person => person.dob === '5/9/1951');
+                break;
+            case '1952':
+                results = 
+                people.filter(person => person.dob === '12/18/1952');
+                break;
+            case '1953':
+                results = 
+                people.filter(person => person.dob === '10/7/1953');
+                break;
+            case '1959':
+                results = 
+                people.filter(person => person.dob === '7/26/1959');
+                break;
+            case '1961':
+                results =
+                people.filter(person => person.dob === '12/11/1961');
+                break;
+            case '1963':
+                results =
+                people.filter(person => person.dob === '3/13/1963');
+                break;
+            case '1966':
+                results =
+                people.filter(person => person.dob === '2/19/1966');
+                break;
+            case '1967':
+                results =
+                people.filter(person => person.dob === '8/5/1967');
+                break;
+            case '1969':
+                results =
+                people.filter(person => (
+                    person.dob === '12/23/1969' ||
+                    person.dob === '12/18/1969'
+                ));
+                break;
+            case '1970':
+                results =
+                people.filter(person => (
+                    person.dob === '11/4/1970' ||
+                    person.dob === '2/19/1970'
+                ));
+                break;
+            case '1972':
+                results =
+                people.filter(person => person.dob === '2/8/1972');
+                break;
+            case '1987':
+                results =
+                people.filter(person => person.dob === '2/02/1987');
+                break;
+            default:
+                alert('Invalid input!')
+                return searchByDOB(people);
+
+    } 
+    } else {
+        alert('Invalid input!');
+        return searchByDOB(people);
+    }
+
+    if (results.length > 0) {
+        alert('Filtered Results:\n' + JSON.stringify(results, null, 2));
+    } else {
+        alert('No results found for the selected criteria.');
+    }
+    
+    return results;
+    }
+ 
 function SearchByEyeColor(people) {
     let eyeColorToSearch = validatedPrompt(
         'Please choose an option to filter by for eyeColor trait.',
