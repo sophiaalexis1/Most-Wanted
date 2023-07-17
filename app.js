@@ -305,7 +305,7 @@ function searchByDOB(people) {
     }
     
     return results;
-    }
+}
  
 function SearchByEyeColor(people) {
     let eyeColorToSearch = validatedPrompt(
@@ -381,6 +381,109 @@ function SearchByOccupation(people) {
             alert('Invalid input. Please try agin.');
             SearchByOccupation(people);
         }
+    return results
+}
+function SearchByWeight(people) {
+    let weightToSearch = validatedPrompt(
+        'Please choose an option to filter by weight.', 
+        ['100', '110', '112', '115', '118', '137', '156', '162', '170', '175', '179', '184', '187', '179', '184', '187', '199', '205', '207', '235', '241', '249', '250', '256',]
+        );
+    let results = [];    
+    if (weightToSearch === '100') {
+        const weightToSearchFor = parseInt(100);
+        results = people.filter(person => person.weight === weightToSearchFor)
+        }
+    else if (weightToSearch === '110') {
+        const weightToSearchFor = parseInt(110);
+        results = people.filter(person => person.weight === weightToSearchFor)
+        }
+    else if (weightToSearch === '112') {
+        const weightToSearchFor = parseInt(112);
+        results = people.filter(person => person.weight === weightToSearchFor)
+        }
+    else if (weightToSearch === '115') {
+        const weightToSearchFor = parseInt(115);
+        results = people.filter(person => person.weight === weightToSearchFor)
+        }
+    else if (weightToSearch === '118') {
+        const weightToSearchFor = parseInt(118);
+        results = people.filter(person => person.weight === weightToSearchFor)
+        }
+    else if (weightToSearch === '137') {
+        const weightToSearchFor = parseInt(137);
+        results = people.filter(person => person.weight === weightToSearchFor)
+        }
+    else if (weightToSearch === '156') {
+        const weightToSearchFor = parseInt(156);
+        results = people.filter(person => person.weight === weightToSearchFor)
+        }
+    else if (weightToSearch === '162') {
+        const weightToSearchFor = parseInt(162);
+        results = people.filter(person => person.weight === weightToSearchFor)
+        }
+    else if (weightToSearch === '170') {
+        const weightToSearchFor = parseInt(170);
+        results = people.filter(person => person.weight === weightToSearchFor)
+        }
+    else if (weightToSearch === '175') {
+        const weightToSearchFor = parseInt(170);
+        results = people.filter(person => person.weight === weightToSearchFor)
+        }
+    else if (weightToSearch === '179') {
+        const weightToSearchFor = parseInt(170);
+        results = people.filter(person => person.weight === weightToSearchFor)
+        }
+    else if (weightToSearch === '184') {
+        const weightToSearchFor = parseInt(170);
+        results = people.filter(person => person.weight === weightToSearchFor)
+        }
+    else if (weightToSearch === '187') {
+        const weightToSearchFor = parseInt(187);
+        results = people.filter(person => person.weight === weightToSearchFor)
+        }
+    else if (weightToSearch === '199') {
+        const weightToSearchFor = parseInt(199);
+        results = people.filter(person => person.weight === weightToSearchFor)
+        }
+    else if (weightToSearch === '205') {
+        const weightToSearchFor = parseInt(205);
+        results = people.filter(person => person.weight === weightToSearchFor)
+        }
+    else if (weightToSearch === '207') {
+        const weightToSearchFor = parseInt(207);
+        results = people.filter(person => person.weight === weightToSearchFor)
+        }
+    else if (weightToSearch === '235') {
+        const weightToSearchFor = parseInt(235);
+        results = people.filter(person => person.weight === weightToSearchFor)
+        }
+    else if (weightToSearch === '241') {
+        const weightToSearchFor = parseInt(241);
+        results = people.filter(person => person.weight === weightToSearchFor)
+        }
+    else if (weightToSearch === '249') {
+        const weightToSearchFor = parseInt(249);
+        results = people.filter(person => person.weight === weightToSearchFor)
+        }
+    else if (weightToSearch === '250') {
+        const weightToSearchFor = parseInt(250);
+        results = people.filter(person => person.weight === weightToSearchFor)
+        }
+    else if (weightToSearch === '256') {
+        const weightToSearchFor = parseInt(256);
+        results = people.filter(person => person.weight === weightToSearchFor)
+        }
+    else {
+            alert('Invalid input. Please try agin.');
+            SearchByWeight(people);
+        }
+    
+if (results.length > 0) {
+    alert('Filtered Results:\n' + JSON.stringify(results, null, 2));
+} 
+else {
+    alert('No results found for the selected criteria.');
+     }
     return results
 }
 
