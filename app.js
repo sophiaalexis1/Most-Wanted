@@ -79,7 +79,8 @@ function searchByTraits(people) {
             console.log(traitsResults);
             break;    
         case 'height':
-            null;
+            traitsResults = [SearchByHeight(people)];
+            console.log(traitsResults);
             break;    
         case 'weight':
             traitsResults = [SearchByWeight(people)];
@@ -480,6 +481,82 @@ function SearchByWeight(people) {
     
 if (results.length > 0) {
     alert('Filtered Results:\n' + JSON.stringify(results, null, 2));
+} 
+else {
+    alert('No results found for the selected criteria.');
+     }
+    return results
+}
+function SearchByHeight(people) {
+    let heightToSearch = validatedPrompt(
+        'Please choose an option to filter by weight.', 
+        ['58', '59', '61', '62', '63', '65', '66', '67', '69', '70', '71', '72', '74', '76',]
+        );
+    let results = [];    
+    if (heightToSearch === '58') {
+        const heightToSearchFor = parseInt(58);
+        results = people.filter(person => person.height === heightToSearchFor)
+        }
+    else if (heightToSearch === '59') {
+        const heightToSearchFor = parseInt(59);
+        results = people.filter(person => person.height === heightToSearchFor)
+        }
+    else if (heightToSearch === '61') {
+        const heightToSearchFor = parseInt(61);
+        results = people.filter(person => person.height === heightToSearchFor)
+        }
+    else if (heightToSearch === '62') {
+        const heightToSearchFor = parseInt(62);
+        results = people.filter(person => person.height === heightToSearchFor)
+        }
+    else if (heightToSearch === '63') {
+        const heightToSearchFor = parseInt(63);
+        results = people.filter(person => person.height === heightToSearchFor)
+        }
+    else if (heightToSearch === '65') {
+        const heightToSearchFor = parseInt(65);
+        results = people.filter(person => person.height === heightToSearchFor)
+        }
+    else if (heightToSearch === '66') {
+        const heightToSearchFor = parseInt(66);
+        results = people.filter(person => person.height === heightToSearchFor)
+        }
+    else if (heightToSearch === '67') {
+        const heightToSearchFor = parseInt(67);
+        results = people.filter(person => person.height === heightToSearchFor)
+        }
+    else if (heightToSearch === '69') {
+        const heightToSearchFor = parseInt(69);
+        results = people.filter(person => person.height === heightToSearchFor)
+        }
+    else if (heightToSearch === '70') {
+        const heightToSearchFor = parseInt(70);
+        results = people.filter(person => person.height === heightToSearchFor)
+        }
+    else if (heightToSearch === '71') {
+        const heightToSearchFor = parseInt(71);
+        results = people.filter(person => person.height === heightToSearchFor)
+        }
+    else if (heightToSearch === '72') {
+        const heightToSearchFor = parseInt(72);
+        results = people.filter(person => person.height === heightToSearchFor)
+        }
+    else if (heightToSearch === '74') {
+        const heightToSearchFor = parseInt(74);
+        results = people.filter(person => person.height === heightToSearchFor)
+        }
+    else if (heightToSearch === '76') {
+        const heightToSearchFor = parseInt(76);
+        results = people.filter(person => person.height === heightToSearchFor)
+        }
+    else {
+            alert('Invalid input. Please try agin.');
+            SearchByHeight(people);
+        }
+    
+if (results.length > 0) {
+    let filteredResultsString = results.map(person => `${person.firstName} ${person.lastName}`).join(`\n`);
+    alert('Filtered Results:\n' + filteredResultsString);
 } 
 else {
     alert('No results found for the selected criteria.');
