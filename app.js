@@ -382,7 +382,15 @@ function SearchByOccupation(people) {
             alert('Invalid input. Please try agin.');
             SearchByOccupation(people);
         }
-    return results
+if (results.length > 0) {
+    let filteredResultsString = results.map(person => `${person.firstName} ${person.lastName}`).join(`\n`);
+    alert('Filtered Results:\n' + filteredResultsString);
+} 
+else {
+    alert('No results found for the selected criteria.');
+}
+        
+        return results
 }
 function SearchByWeight(people) {
     let weightToSearch = validatedPrompt(
