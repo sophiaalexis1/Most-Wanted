@@ -82,7 +82,8 @@ function searchByTraits(people) {
             null;
             break;    
         case 'weight':
-            null;
+            traitsResults = [SearchByWeight(people)];
+            console.log(traitsResults);
             break;    
         case 'eyeColor':
             traitsResults = [SearchByEyeColor(people)];
@@ -306,7 +307,6 @@ function searchByDOB(people) {
     
     return results;
 }
- 
 function SearchByEyeColor(people) {
     let eyeColorToSearch = validatedPrompt(
         'Please choose an option to filter by for eyeColor trait.',
