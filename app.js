@@ -480,11 +480,12 @@ function SearchByWeight(people) {
         }
     
 if (results.length > 0) {
-    alert('Filtered Results:\n' + JSON.stringify(results, null, 2));
+    let filteredResultsString = results.map(person => `${person.firstName} ${person.lastName}`).join(`\n`);
+    alert('Filtered Results:\n' + filteredResultsString);
 } 
 else {
     alert('No results found for the selected criteria.');
-     }
+}
     return results
 }
 function SearchByHeight(people) {
