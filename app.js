@@ -127,7 +127,7 @@ function searchByDOB(people) {
         ['month', 'year']
         );
     let results = [];
-    if (dobToSearchString = "month") {
+    if (dobToSearchString === 'month') {
         const monthToSearchFor = validatedPrompt(
             'Please choose an option to filter by month',
             ['january', 'february', 'march', 'april', 'may', 'july', 'august','september', 'october', 'november', 'december',]
@@ -300,12 +300,13 @@ function searchByDOB(people) {
         return searchByDOB(people);
     }
 
-    if (results.length > 0) {
-        alert('Filtered Results:\n' + JSON.stringify(results, null, 2));
-    } else {
-        alert('No results found for the selected criteria.');
-    }
-    
+if (results.length > 0) {
+    let filteredResultsString = results.map(person => `${person.firstName} ${person.lastName}`).join(`\n`);
+    alert('Filtered Results:\n' + filteredResultsString);
+} 
+else {
+    alert('No results found for the selected criteria.');
+}
     return results;
 }
 function SearchByEyeColor(people) {
