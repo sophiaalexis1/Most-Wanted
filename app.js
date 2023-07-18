@@ -66,7 +66,7 @@ function searchByName(people) {
 function searchByTraits(people) {
     const traitsToSearchFor = validatedPrompt(
         'Please enter the the trait you are searching for.', 
-        ['gender', 'dob', 'height', 'weight', 'eyeColor', 'occupation', 'parents', 'currentSpouse']
+        ['gender', 'dob', 'height', 'weight', 'eyecolor', 'occupation', 'parents', 'currentSpouse']
         );
     let traitsResults = [];
     switch (traitsToSearchFor) {
@@ -86,7 +86,7 @@ function searchByTraits(people) {
             traitsResults = [SearchByWeight(people)];
             console.log(traitsResults);
             break;    
-        case 'eyeColor':
+        case 'eyecolor':
             traitsResults = [SearchByEyeColor(people)];
             console.log(traitsResults);
             break;    
@@ -338,6 +338,13 @@ function SearchByEyeColor(people) {
             alert('Invalid input. Please try agin.');
             SearchByEyeColor(people);
         }
+if (results.length > 0) {
+    let filteredResultsString = results.map(person => `${person.firstName} ${person.lastName}`).join(`\n`);
+    alert('Filtered Results:\n' + filteredResultsString);
+} 
+else {
+    alert('No results found for the selected criteria.');
+}
     return results
 }
 function SearchByOccupation(people) {
