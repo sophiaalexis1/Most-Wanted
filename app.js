@@ -588,6 +588,51 @@ else {
     return results
 }
 
+function displayPersonInfo(person) {
+    const personInfo = `
+        ID: ${person.id}
+        Name: ${person.firstName} ${person.lastName}
+        Gender: ${person.gender}
+        Age: ${calculateAge(person.dob)}
+        Date of Birth: ${person.dob}
+        Height: ${person.height}
+        Weight: ${person.weight}
+        Eye Color: ${person.eyeColor}
+        Occupation: ${person.occupation}
+        `;
+alert(personInfo);
+}
+function calculateAge(dob) {
+    const today = new Date();
+    const birthDate = new Date(dob);
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const monthDifference = today.getMonth() - birthDate.getMonth();
+    if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+    return age;
+}
+function displayPeople(Family, personFamily) {
+
+}
+function findPersonFamily(person, people) {
+    const personSpouse = person.currentSpouse.map(spouseId => {
+        const spouse = people.find(p => p.id === spouseId);
+        return spouse ? `${spouse.firstName} ${spouse.lastName}` : "None"
+    }).join(","); 
+    
+    const parentNames = person.parents.map(parentId => {
+        const parent = people.find(p => p.id === parentId);
+        return parent ? `${parent.firstName} ${parent.lastName}` : "Unknown";
+    }).join(", ");
+
+    const personFamily = `
+    Parents: ${parentNames}
+    Current Spouse: ${personSpouse}
+    `;
+    
+alert(personFamily);
+}
 
 function mainMenu(person, people) {
 
@@ -599,7 +644,7 @@ function mainMenu(person, people) {
     switch (mainMenuUserActionChoice) {
         case "info":
             //! TODO
-            // displayPersonInfo(person);
+            displayPersonInfo(person);
             break;
         case "family":
             //! TODO
