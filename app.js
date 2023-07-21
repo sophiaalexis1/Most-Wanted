@@ -612,26 +612,45 @@ function calculateAge(dob) {
     }
     return age;
 }
-function displayPeople(Family, personFamily) {
+function displayPeopleFamily(Family, personFamily) {
+    const { parentNames, personSpouse } = personFamily;
 
-}
-function findPersonFamily(person, people) {
-    const personSpouse = person.currentSpouse.map(spouseId => {
-        const spouse = people.find(p => p.id === spouseId);
-        return spouse ? `${spouse.firstName} ${spouse.lastName}` : "None"
-    }).join(","); 
-    
-    const parentNames = person.parents.map(parentId => {
-        const parent = people.find(p => p.id === parentId);
-        return parent ? `${parent.firstName} ${parent.lastName}` : "Unknown";
-    }).join(", ");
-
-    const personFamily = `
+    const personFamilyInfo = `
     Parents: ${parentNames}
     Current Spouse: ${personSpouse}
     `;
+    alert(personFamilyInfo);
+}
+function findPersonFamily(person, people) {
+    let spouseId = person.currentSpouse;
+    let personSpouse = "None";
+
+    if (spouseId !== null && spouseId !== undefined) {
+        const spouse = people.find(p => p.id === spouseId);
+        personSpouse = spouse ? `${spouse.firstName} ${spouse.lastName}` : "None";
+    }
+    // let personSpouse = person.currentSpouse.filter(function(el) {
+    //     if(el.currentSpouse === person.id) {
+    //         const spouse = people.find(p => p.id === spouseId);
+    //         return spouse ? `${spouse.firstName} ${spouse.lastName}` : "None"; 
+    //     } else {
+    //         return false;
+    //     }
+
+    // })
+    // const personSpouse = person.currentSpouse.map(spouseId => {
+    //     const spouse = people.find(p => p.id === spouseId);
+    //     return spouse ? `${spouse.firstName} ${spouse.lastName}` : "None";
+    // }).join(","); 
     
-alert(personFamily);
+    // const parentNames = person.parents.map(parentId => {
+    //     const parent = people.find(p => p.id === parentId);
+    //     return parent ? `${parent.firstName} ${parent.lastName}` : "Unknown";
+    // }).join(", ");
+    return {
+        // parentNames,
+        personSpouse
+    };
 }
 
 function mainMenu(person, people) {
@@ -648,8 +667,8 @@ function mainMenu(person, people) {
             break;
         case "family":
             //! TODO
-            // let personFamily = findPersonFamily(person, people);
-            // displayPeople('Family', personFamily);
+            let personFamily = findPersonFamily(person, people);
+            displayPeopleFamily('Family', personFamily);
             break;
         case "descendants":
             //! TODO
