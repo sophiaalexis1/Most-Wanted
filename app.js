@@ -629,26 +629,13 @@ function findPersonFamily(person, people) {
         const spouse = people.find(p => p.id === spouseId);
         personSpouse = spouse ? `${spouse.firstName} ${spouse.lastName}` : "None";
     }
-    // let personSpouse = person.currentSpouse.filter(function(el) {
-    //     if(el.currentSpouse === person.id) {
-    //         const spouse = people.find(p => p.id === spouseId);
-    //         return spouse ? `${spouse.firstName} ${spouse.lastName}` : "None"; 
-    //     } else {
-    //         return false;
-    //     }
-
-    // })
-    // const personSpouse = person.currentSpouse.map(spouseId => {
-    //     const spouse = people.find(p => p.id === spouseId);
-    //     return spouse ? `${spouse.firstName} ${spouse.lastName}` : "None";
-    // }).join(","); 
     
-    // const parentNames = person.parents.map(parentId => {
-    //     const parent = people.find(p => p.id === parentId);
-    //     return parent ? `${parent.firstName} ${parent.lastName}` : "Unknown";
-    // }).join(", ");
+    const parentNames = person.parents.map(parentId => {
+        const parent = people.find(p => p.id === parentId);
+        return parent ? `${parent.firstName} ${parent.lastName}` : "Unknown";
+    }).join(", ");
     return {
-        // parentNames,
+        parentNames,
         personSpouse
     };
 }
