@@ -634,8 +634,9 @@ function findPersonFamily(person, people) {
         const parent = people.find(p => p.id === parentId);
         return parent ? `${parent.firstName} ${parent.lastName}` : "Unknown";
     }).join(", ");
+    
     return {
-        parentNames,
+        parentNames: parentNames || "Unknown",
         personSpouse
     };
 }
