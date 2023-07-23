@@ -639,6 +639,26 @@ function findPersonFamily(person, people) {
         personSpouse
     };
 }
+function findPersonDescendants(person, people) {
+    let searchParentId = person.id;
+    let personDescendants = [];
+
+    function findDescendantsRecursive(parentId) {
+        const children = people.filter(p => p.parents.includes(parentId));
+        for (const child of children) {
+            personDescendants.push(`${child.firstName} ${child.lastName}`);
+            findDescendantsRecursive(child.id);
+        }
+    }
+
+    findDescendantsRecursive(searchParentId);
+    
+    return personDescendants.length > 0 ? personDescendants : ["None"];
+}
+function displayPersonDescendants(displayTitle, peopleToDisplay) {
+    const formatedPeopleDisplayText = peopleToDisplay.join('\n'); // Use join() to convert the array to a string
+    alert(`${displayTitle}\n\n${formatedPeopleDisplayText}`);
+}
 
 function mainMenu(person, people) {
 
@@ -659,8 +679,8 @@ function mainMenu(person, people) {
             break;
         case "descendants":
             //! TODO
-            // let personDescendants = findPersonDescendants(person, people);
-            // displayPeople('Descendants', personDescendants);
+            let personDescendants = findPersonDescendants(person, people);
+            displayPersonDescendants('Descendants:', personDescendants);
             break;
         case "quit":
             return;
