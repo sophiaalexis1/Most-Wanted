@@ -64,41 +64,59 @@ function searchByName(people) {
 }
 
 function searchByTraits(people) {
-    const traitsToSearchFor = validatedPrompt(
-        'Please enter the the trait you are searching for.', 
-        ['gender', 'dob', 'height', 'weight', 'eyecolor', 'occupation', 'parents', 'currentSpouse']
-        );
-    let traitsResults = [];
-    switch (traitsToSearchFor) {
-        case 'gender':
-            traitsResults = [SearchByGender(people)];
-            console.log(traitsResults);
-            break;
-        case 'dob':
-            traitsResults = [searchByDOB(people)];
-            console.log(traitsResults);
-            break;    
-        case 'height':
-            traitsResults = [SearchByHeight(people)];
-            console.log(traitsResults);
-            break;    
-        case 'weight':
-            traitsResults = [SearchByWeight(people)];
-            console.log(traitsResults);
-            break;    
-        case 'eyecolor':
-            traitsResults = [SearchByEyeColor(people)];
-            console.log(traitsResults);
-            break;    
-        case 'occupation':
-            traitsResults = [SearchByOccupation(people)];
-            console.log(traitsResults);
-            break;      
-        default:
-            alert("Invalid input!");
-            return searchByTraits(people);  
+    let filterResults = people;
+    let matchingRecords = people.length;
+    while(filterResults.length > 1 ) {
+
+        const traitsToSearchFor = validatedPrompt(
+            'Please enter the the trait you are searching for. \nCurrent Number of Matching Records: ' + matchingRecords, 
+            ['gender', 'dob', 'height', 'weight', 'eyecolor', 'occupation', 'parents', 'currentSpouse', 'reset', 'done']
+         );
+
+        if (traitsToSearchFor === 'done') {
+            console.log(filterResults);
+            alert('Filtered Results:\n' + filterResults);
+        }
+        if (traitsToSearchFor === 'reset') {
+            searchPeopleDataSet(people);
+            matchingRecords = 22;
+            continue;
+        }
+        
+
+        switch (traitsToSearchFor) {
+            case 'gender':
+                filterResults = SearchByGender(filterResults);
+                console.log(filterResults);
+                break;
+            case 'dob':
+                filterResults = searchByDOB(filterResults);
+                console.log(filterResults);
+                break;    
+            case 'height':
+                filterResults = SearchByHeight(filterResults);
+                console.log(filterResults);
+                break;    
+            case 'weight':
+                filterResults = SearchByWeight(filterResults);
+                console.log(filterResults);
+                break;    
+            case 'eyecolor':
+                filterResults = SearchByEyeColor(filterResults);
+                console.log(filterResults);
+                break;    
+            case 'occupation':
+                filterResults = SearchByOccupation(filterResults);
+                console.log(filterResults);
+                break;          
+            default:
+                alert("Invalid input!");
+                searchPeopleDataSet(filterResults); 
+        }
+
+        matchingRecords = Array.isArray(filterResults) ? filterResults.length : 0;
     }
-    return traitsResults;
+    return filterResults;
 }
 
 function SearchByGender(people) {
@@ -121,7 +139,9 @@ function SearchByGender(people) {
         }
 if (results.length > 0) {
     let filteredResultsString = results.map(person => `${person.firstName} ${person.lastName}`).join(`\n`);
+    // let matchingRecords = results.length
     alert('Filtered Results:\n' + filteredResultsString);
+    // alert(`Current Number of Matching Records: ` + matchingRecords);
 } 
 else {
     alert('No results found for the selected criteria.');
@@ -588,7 +608,7 @@ else {
     return results
 }
 
-function displayPersonInfo(person) {
+function displayPersonInfo(person, people) {
     const personInfo = `
         ID: ${person.id}
         Name: ${person.firstName} ${person.lastName}
@@ -602,6 +622,19 @@ function displayPersonInfo(person) {
         `;
 alert(personInfo);
 }
+function displayCurrentSpouse(person, people) {
+    let spouseId = person.currentSpouse;
+    let personSpouse = "None";
+
+    if (spouseId !== null && spouseId !== undefined) {
+        const spouse = people.find(p => p.id === spouseId);
+        personSpouse = spouse ? `${spouse.firstName} ${spouse.lastName}` : "None";
+    }
+
+    return {
+        personSpouse
+    };
+}
 function calculateAge(dob) {
     const today = new Date();
     const birthDate = new Date(dob);
@@ -613,17 +646,19 @@ function calculateAge(dob) {
     return age;
 }
 function displayPeopleFamily(Family, personFamily) {
-    const { parentNames, personSpouse } = personFamily;
+    const { parentNames, personSpouse, descendants } = personFamily;
 
     const personFamilyInfo = `
     Parents: ${parentNames}
     Current Spouse: ${personSpouse}
+    Descendants: ${descendants}
     `;
     alert(personFamilyInfo);
 }
 function findPersonFamily(person, people) {
     let spouseId = person.currentSpouse;
     let personSpouse = "None";
+    let descendants = findPersonDescendants(person, people)
 
     if (spouseId !== null && spouseId !== undefined) {
         const spouse = people.find(p => p.id === spouseId);
@@ -637,7 +672,8 @@ function findPersonFamily(person, people) {
     
     return {
         parentNames: parentNames || "Unknown",
-        personSpouse
+        personSpouse,
+        descendants,
     };
 }
 function findPersonDescendants(person, people) {
