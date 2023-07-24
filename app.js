@@ -65,21 +65,28 @@ function searchByName(people) {
 
 function searchByTraits(people) {
     let filterResults = people;
-    let matchingRecords = people.length;
+    let matchingRecords = filterResults.length;
     while(filterResults.length > 1 ) {
 
         const traitsToSearchFor = validatedPrompt(
             'Please enter the the trait you are searching for. \nCurrent Number of Matching Records: ' + matchingRecords, 
-            ['gender', 'dob', 'height', 'weight', 'eyecolor', 'occupation', 'parents', 'currentSpouse', 'reset', 'done']
+            ['gender', 'dob', 'height', 'weight', 'eyecolor', 'occupation', 'reset', 'done']
          );
 
         if (traitsToSearchFor === 'done') {
+            let filteredResultsString = filterResults.map(person => `${person.firstName} ${person.lastName}`).join(`\n`);
             console.log(filterResults);
-            alert('Filtered Results:\n' + filterResults);
+            alert('Filtered Results:\n' + filteredResultsString);
+            searchPeopleDataSet(people);
+            filterResults = people;
+            matchingRecords = filterResults.length
+            continue;
+
         }
         if (traitsToSearchFor === 'reset') {
             searchPeopleDataSet(people);
-            matchingRecords = 22;
+            filterResults = people;
+            matchingRecords = filterResults.length
             continue;
         }
         
@@ -113,8 +120,8 @@ function searchByTraits(people) {
                 alert("Invalid input!");
                 searchPeopleDataSet(filterResults); 
         }
-
         matchingRecords = Array.isArray(filterResults) ? filterResults.length : 0;
+
     }
     return filterResults;
 }
@@ -139,9 +146,7 @@ function SearchByGender(people) {
         }
 if (results.length > 0) {
     let filteredResultsString = results.map(person => `${person.firstName} ${person.lastName}`).join(`\n`);
-    // let matchingRecords = results.length
     alert('Filtered Results:\n' + filteredResultsString);
-    // alert(`Current Number of Matching Records: ` + matchingRecords);
 } 
 else {
     alert('No results found for the selected criteria.');
